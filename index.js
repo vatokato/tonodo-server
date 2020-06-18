@@ -4,7 +4,7 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const mongoose = require('mongoose');
-const { host, port, database, salt } = require('./config');
+const { host, port, database } = require('./config');
 
 const router = require('./router/');
 

@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
-
+const { saltRounds } = require('../config');
 const Schema = mongoose.Schema;
-const saltRounds = 12;
 
 const userSchema = new Schema({
   username: {
