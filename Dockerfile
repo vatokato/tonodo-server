@@ -1,5 +1,6 @@
 FROM node:12-alpine
-WORKDIR /
+WORKDIR ./
+RUN npm install
 COPY ./package*.json ./
 COPY . .
 EXPOSE 3000
