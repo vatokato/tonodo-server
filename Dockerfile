@@ -1,7 +1,7 @@
 FROM node:12-alpine
 WORKDIR ./
+RUN npm install
 COPY ./package*.json ./
 COPY . .
-RUN npm install
 EXPOSE 3000
-CMD ["nodemon", "index.js"]
+CMD ["node", "index.js"]
