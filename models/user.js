@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
-const { saltRounds } = require('../config');
+const { saltRounds } = require('../config.js');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({

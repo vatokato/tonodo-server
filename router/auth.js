@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const pick = require('lodash/pick');
-const { tokenSecret } = require('../config');
+const { tokenSecret } = require('../config.js');
 
 const User = require('../models/user');
 
