@@ -1,5 +1,5 @@
 FROM node:12-alpine
-WORKDIR /server
+WORKDIR /
 COPY ./package*.json ./
 COPY . .
 EXPOSE 3000
