@@ -25,8 +25,8 @@ router.post('/', async (req, res) => { // localhost/auth
   }
 
   const userInfo = pick(user, ['_id', 'username']);
-  console.log(userInfo);
-  res.json({
+
+  return res.status(200).json({
     token: jwt.sign(userInfo, tokenSecret),
     ...userInfo
   });

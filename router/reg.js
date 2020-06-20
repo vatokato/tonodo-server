@@ -28,11 +28,13 @@ router.post('/', async (req, res) => { // localhost/auth
     password,
   });
 
-  await newUser.save();
+  await newUser.save(err => {
+    console.error(err);
+  });
 
   const userInfo = pick(newUser, ['_id', 'username']);
-  console.log(userInfo);
-  res.json({
+
+  res.status(200).json({
     token: jwt.sign(userInfo, tokenSecret),
     ...userInfo
   });

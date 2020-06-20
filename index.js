@@ -4,12 +4,12 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const mongoose = require('mongoose');
-const { host, port, database } = require('./config.js');
+const { mongoHost, mongoPort, mongoDB, port } = require('./config.js');
 
 const router = require('./router/');
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect(`mongodb://${host}:${port}/${database}`, {
+mongoose.connect(`mongodb://${mongoHost}:${mongoPort}/${mongoDB}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -53,6 +53,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(5000, () => {
-  console.log('Server has been started! http://localhost:5000');
+server.listen(port, () => {
+  console.log(`Server has been started! http://localhost:${port}`);
 });

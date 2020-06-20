@@ -1,11 +1,21 @@
 const isProduction = process.env.NODE_ENV === 'production';
 
+const {
+    PORT: port,
+    MONGO_HOST: mongoHost,
+    MONGO_PORT: mongoPort,
+    MONGO_DB: mongoDB,
+    TOKEN: tokenSecret,
+    SALT_ROUNDS: saltRounds,
+} = process.env || {};
+
 module.exports = isProduction
   ? {
-    host: process.env.MONGO_HOST,
-    port: process.env.MONGO_PORT,
-    database: process.env.MONGO_DB,
-    tokenSecret: process.env.TOKEN,
-    saltRounds: process.env.SALT_ROUNDS,
+    port,
+    mongoHost,
+    mongoPort,
+    mongoDB,
+    tokenSecret,
+    saltRounds,
   }
   : require('./config.json');
