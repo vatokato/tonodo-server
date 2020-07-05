@@ -1,0 +1,10 @@
+{
+  "port": 9000,
+  "mongoHost": "localhost",
+  "mongoPort": 27017,
+  "mongoDB": "db-name",
+  "mongoUser": "root",
+  "mongoPassword": "",
+  "tokenSecret": "secret",
+  "saltRounds": 5
+}

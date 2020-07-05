@@ -1,7 +1,0 @@
-{
-  "host": "localhost",
-  "port": 27001,
-  "database": "dbName",
-  "tokenSecret": "SecretPhrase",
-  "saltRounds": 1
-}

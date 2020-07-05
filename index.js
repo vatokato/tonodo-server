@@ -4,14 +4,18 @@ const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const mongoose = require('mongoose');
-const { mongoHost, mongoPort, mongoDB, port } = require('./config.js');
+const { mongoHost, mongoPort, mongoDB, mongoUser, mongoPassword, port } = require('./config.js');
 
 const router = require('./router/');
+
+console.log(mongoUser, mongoPassword)
 
 mongoose.set('useFindAndModify', false);
 mongoose.connect(`mongodb://${mongoHost}:${mongoPort}/${mongoDB}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  user: mongoUser,
+  pass: mongoPassword,
 });
 
 app.use(cors());
