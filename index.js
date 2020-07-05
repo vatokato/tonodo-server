@@ -9,9 +9,16 @@ const { mongoHost, mongoPort, mongoDB, mongoUser, mongoPassword, port } = requir
 const router = require('./router/');
 
 mongoose.set('useFindAndModify', false);
-mongoose.connect(`mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`, {
+const mongoUserPassword = mongoUser ? `${mongoUser}:${mongoPassword}@` : '';
+mongoose.connect(
+  `mongodb://${mongoUserPassword}${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`,
+  {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+}).then(res => {
+  console.log('mongo started');
+}).catch(error => {
+  console.error(error);
 });
 
 console.log( mongoHost, mongoPort, mongoDB, mongoUser, mongoPassword, port );
