@@ -10,17 +10,21 @@ router.post('/', async (req, res) => { // localhost/auth
   const { username, password, password2 } = req.body;
 
   if (!username || !password || !password2) {
-    return res.status(401).json({ message: 'Incorrect username or password.' });
+    return res.status(400).json({ message: 'Incorrect username or password.' });
   }
 
   if (password !== password2) {
-    return res.status(401).json({ message: 'Passwords do not match' });
+    return res.status(400).json({ message: 'Passwords do not match' });
   }
 
-  const user = await User.findOne({username});
+  try {
+    const user = await User.findOne({username});
 
-  if (user) {
-    return res.status(401).json({ message: 'User already exists' });
+    if (user) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+  } catch (error) {
+    res.status(500).json({ error });
   }
 
   const newUser = new User({
@@ -28,16 +32,16 @@ router.post('/', async (req, res) => { // localhost/auth
     password,
   });
 
-  await newUser.save(err => {
-    console.error(err);
-  });
-
-  const userInfo = pick(newUser, ['_id', 'username']);
-
-  res.status(200).json({
-    token: jwt.sign(userInfo, tokenSecret),
-    ...userInfo
-  });
+  try {
+    await newUser.save();
+    const userInfo = pick(newUser, ['_id', 'username']);
+    res.status(200).json({
+      token: jwt.sign(userInfo, tokenSecret),
+      ...userInfo
+    });
+  } catch (error) {
+    res.status(500).json({ error });
+  }
 });
 
 module.exports = router;

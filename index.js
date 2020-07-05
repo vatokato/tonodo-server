@@ -8,14 +8,10 @@ const { mongoHost, mongoPort, mongoDB, mongoUser, mongoPassword, port } = requir
 
 const router = require('./router/');
 
-console.log(mongoUser, mongoPassword)
-
 mongoose.set('useFindAndModify', false);
-mongoose.connect(`mongodb://${mongoHost}:${mongoPort}/${mongoDB}`, {
+mongoose.connect(`mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  user: mongoUser,
-  pass: mongoPassword,
 });
 
 app.use(cors());

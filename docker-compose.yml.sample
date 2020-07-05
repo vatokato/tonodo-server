@@ -5,8 +5,9 @@ services:
     hostname: mongo
     image: mongo
     ports:
-      - "27017:27017"
+      - 27017:27017
     environment:
+      - AUTH=true
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=root
   api:
