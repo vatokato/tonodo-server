@@ -21,8 +21,6 @@ mongoose.connect(
   console.error(error);
 });
 
-console.log( mongoHost, mongoPort, mongoDB, mongoUser, mongoPassword, port );
-
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
