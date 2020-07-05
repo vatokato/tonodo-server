@@ -14,6 +14,8 @@ mongoose.connect(`mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPo
   useUnifiedTopology: true,
 });
 
+console.log( mongoHost, mongoPort, mongoDB, mongoUser, mongoPassword, port );
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
